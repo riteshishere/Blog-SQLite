@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "node app",
     "test1": "mocha task1.spec.js",
     "test2": "mocha task2.spec.js",
     "test3": "mocha task3.spec.js",
