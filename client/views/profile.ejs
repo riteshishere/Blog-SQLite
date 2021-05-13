@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Blogs</title>
+  <link href="https://fonts.googleapis.com/css?family=Didact Gothic" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="content">
+    <header>
+      <div>
+        <img src="assets/kflogo.png" alt="logo" class="logo" />
+        <a href="/">Konfinity Blogs</a>
+      </div>
+      <nav>
+        <a href="#" class="hide-desktop">
+          <i class="fas fa-bars" id="menu"></i>
+        </a>
+        <ul class="show-desktop hide-mobile" id="nav">
+          <li id="exit" class="exit-btn hide-desktop">
+            <button><i class="far fa-times-circle"></i></button>
+          </li>
+          <li><a href="/createBlog">Post a new Blog</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Log Out</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="main-container">
+      <section id="All-blogs">
+        <div class="heading">
+          Hello <%= name%>! Here are all the blogs posted by you.
+        </div>
+        <div class="allblogs-container">
+          <% for (i in my_blogs) { %>
+
+            <div class="blog">
+              <a>
+                <%= my_blogs[i].blog_heading %>
+              </a>
+              <p>By <%= my_blogs[i].name %> on <%= my_blogs[i].createdAt %>
+              </p>
+
+              <!-- <form method="post" action="/delete" class="edit-del">
+              <button><i class="fas fa-edit"></i></button>
+              <button name="id" value="<%= my_blogs[i].id %>">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </form> -->
+
+              <div class="edit-del">
+                <!-- <form method="GET" action="/editBlog">
+                <button><i class="fas fa-edit"></i></button>
+              </form> -->
+                <button onclick="edit(<%= my_blogs[i].id %>)">
+                  <i class="fas fa-edit"></i>
+                </button>
+
+                <form method="post" action="/delete">
+                  <button name="id" value="<%= my_blogs[i].id %>">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <% } %>
+        </div>
+      </section>
+    </div>
+  </div>
+  <%-include("footer.ejs")%>
+  <script>
+    var menu = document.getElementById("menu");
+    var nav = document.getElementById("nav");
+    var exit = document.getElementById("exit");
+    menu.addEventListener("click", e => {
+      nav.classList.toggle("hide-mobile");
+      e.preventDefault();
+    });
+    exit.addEventListener("click", e => {
+      nav.classList.toggle("hide-mobile");
+      e.preventDefault();
+    });
+  </script>
+  <script>
+    function edit(id) {
+      window.location = "/editBlog?id=" + id;
+    }
+  </script>
+</body>
+
+</html>

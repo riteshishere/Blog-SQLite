@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Blogs</title>
+  <link href="https://fonts.googleapis.com/css?family=Didact Gothic" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="blog-bg">
+  <div class="content">
+    <header>
+      <div>
+        <img src="assets/kflogo.png" alt="logo" class="logo" />
+        <a href="/">Konfinity Blogs</a>
+      </div>
+      <nav>
+        <a href="#" class="hide-desktop">
+          <i class="fas fa-bars" id="menu"></i>
+        </a>
+        <ul class="show-desktop hide-mobile" id="nav">
+          <li id="exit" class="exit-btn hide-desktop">
+            <button><i class="far fa-times-circle"></i></button>
+          </li>
+          <li><a href="/createBlog">Post a new Blog</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/logout">Log Out</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="blog-container">
+      <section class="blog-content">
+        <div class="content-container">
+          <div class="content-heading">
+            <%= blog.blog_heading %>
+          </div>
+          <div class="content-creator">
+            By <%= blog.name %> on <%= blog.createdAt %>
+          </div>
+          <div class="content-data">
+            <%= blog.blog %>
+          </div>
+          <div class="content-likes-container">
+            <button class="like-btn" name="like" id="like" onclick="like(<%= blog.id %>)">
+              <div>
+                <i class="fas fa-thumbs-up"></i>
+                <label for="likesLabel" id="likesLabel">
+                  <%= blog.likes %>
+                </label>
+              </div>
+            </button>
+            <button class="like-btn" name="dislike" id="dislike" onclick="dislike(<%= blog.id %>)">
+              <div>
+                <i class="fas fa-thumbs-down"></i><label for="dislikesLabel" id="dislikesLabel">
+                  <%= blog.dislikes %>
+                </label>
+              </div>
+            </button>
+            <button class="com-btn" disabled>
+              <div>
+                <i class="fas fa-comment"></i>
+                <label id="totalComments">
+                  <%=result.length%>
+                </label>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="comment-section">
+        <div class="comment-container">
+          <div class="comment-heading">
+            Comments
+          </div>
+          <div class="post-comment">
+            <input class="com-ip" placeholder="Write a comment" name="comment" id="comment" />
+            <button class="com-btn" name="comments" id="comment" onclick="comment(<%= blog.id %>)">
+              Add comment
+            </button>
+          </div>
+
+          <!-- <% for(i in result) { %>
+          <div class="comment">
+            <strong><%= result[i].name %> : </strong>
+            <%= result[i].comment %>
+          </div>
+          <% } %> -->
+          <div class="comment" id="commentDisplay">
+            <% for(i in result) { %>
+
+              <strong>
+                <%= result[i].name %> :
+              </strong>
+              <p>
+                <%= result[i].comment %>
+              </p>
+
+              <% } %>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <%-include("footer.ejs")%>
+  <script>
+    var menu = document.getElementById("menu");
+    var nav = document.getElementById("nav");
+    var exit = document.getElementById("exit");
+    menu.addEventListener("click", e => {
+      nav.classList.toggle("hide-mobile");
+      e.preventDefault();
+    });
+    exit.addEventListener("click", e => {
+      nav.classList.toggle("hide-mobile");
+      e.preventDefault();
+    });
+  </script>
+  <script src="../js/blog.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Blogs</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Didact Gothic"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="lg-bg">
+    <div class="content">
+      <header>
+        <div>
+          <img src="assets/kflogo.png" alt="logo" class="logo" />
+          <a href="/">Konfinity Blogs</a>
+        </div>
+        <a class="sign" href="/signup">Signup</a>
+      </header>
+      <div class="login-container">
+        <div>
+          <img src="assets/auth.svg" alt="signin" />
+        </div>
+        <h1>Welcome Back!</h1>
+        <form method="POST" action="/login">
+          <div class="form-container">
+            <div>
+              <input
+                class="form-ip"
+                type="email"
+                name="email"
+                placeholder="Enter email"
+              />
+            </div>
+            <div>
+              <input
+                class="form-ip"
+                type="password"
+                name="password"
+                placeholder="Enter password"
+              />
+            </div>
+            <div><button class="form-btn" type="submit">Submit</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <%-include("footer.ejs")%>
+  </body>
+</html>
