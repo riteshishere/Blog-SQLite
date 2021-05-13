@@ -8,3 +8,9 @@
 - Upvoting
 - Downvoting
 - Comment
+### Getting start with project
+```bash
+npm install
+npm start
+```
+**Note:** This project comes along with testcases built on `chai` framework.
